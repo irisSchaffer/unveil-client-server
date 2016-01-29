@@ -4,7 +4,7 @@
   "author": "Iris Schaffer <irisSchaffer@gmx.net>",
   "dependencies": {
     "unveil": "^0.1.13",
-    "unveil-network-sync": "^0.0.2"
+    "unveil-network-sync": "^0.0.3"
   },
   "devDependencies": {
     "react-addons-test-utils": "~0.15.0-alpha.1",
