@@ -17,7 +17,7 @@ io.on('connection', function(socket){
 
   socket.on('*', function(event, data) {
     console.log('broadcasting', event, data);
-    socket.broadcast.emit(event, data);
+    io.emit(event, data);
   });
 });
 
