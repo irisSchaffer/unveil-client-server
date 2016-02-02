@@ -26,7 +26,7 @@ ReactDOM.render( (
   <UnveilApp modes={modes}>
     <Slide name="start">
       <h1>Unveil</h1>
-      <h2>A Meta Presentation</h2>
+      <h2>a meta presentation</h2>
       <Notes>
         heard enough about thesis already<br/>
         now from project perspective
