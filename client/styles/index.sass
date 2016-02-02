@@ -1,14 +1,20 @@
 @import "../../../unveil-fork/styles/index.sass"
 @import "../../../unveil-interactive/styles/interactive.sass"
+@import "prism.scss"
 
 #unveil
   .slide
     font-family: 'Open Sans'
     background-size: cover
     background-position: center
+    background-repeat: no-repeat
 
-  #science-positive
-    background-image: url('../img/collaborate.jpg')
+  h1
+    font-size: 4rem
+
+  #start
+    h1, h2
+      margin: 0
 
   #explore
     background-image: url('../img/explore.jpg')
@@ -18,8 +24,32 @@
     background-image: url('../img/lab.jpg')
     color: $white
 
-  #challenges-reveal
+  #science-positive
+    background-image: url('../img/collaborate.jpg')
+    color: $white
+
+  #science-negative
+    background-image: url('../img/simpsons.gif')
+    background-size: contain
+    color: $white
+
+  #science-positive, #science-negative
+    ul
+      padding: 3em
+      background: rgba(0, 0, 0, .5)
+
+      li
+        margin-bottom: 0.5em
+        &:last-child
+          margin-bottom: 0
+
+  #reveal
     background-image: url('../img/reveal-js.png')
+    background-position: left
+    color: $white
+
+  #behind-the-scenes
+    background-image: url('../img/behind-scenes.jpg')
     color: $white
 
   #technologies img
@@ -27,5 +57,22 @@
     padding: 0 1em
     box-sizing: border-box
 
+  #architecture
+    li, li strong, li span
+      font-size: 2rem
+
   #future
     background-image: url('../img/future.jpeg')
+
+    li
+      font-size: 2rem
+
+  #demo
+    color: $white
+    background-image: url('../img/hammer-time.gif')
+    background-size: contain
+
+    h1
+      background: rgba(0, 0, 0, .7)
+      display: inline-block
+      padding: 0em 0.2em

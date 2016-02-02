@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {PrismCode} from "react-prism";
 
 import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presenter } from '../../unveil-fork/src';
 import { SocketReceiver, SocketSender } from '../../unveil-network-sync/src';
@@ -63,18 +64,26 @@ ReactDOM.render( (
     </Slide>
 
     <Slide name="science">
-      <h1>The science behind it...</h1>
+      <h1>Relevant Research...</h1>
       <Notes>
-        science has shown
+        research has shown
       </Notes>
     </Slide>
     <Slide name="science-negative">
-      <img src="./img/science-negative.png" />
+      <ul>
+        <li>"A Comparative Analysis of Meeting Participant Perception and Use of Smartphones and Other Mobile Devices during Meetings" – Bajko et al. 2013</li>
+        <li>"The Impact of Mobile Phone Usage on Student Learning" – Kuznekoff and Titsworth 2013</li>
+      </ul>
       <Notes>
         - perceived as rude, bla bla
       </Notes>
     </Slide>
     <Slide name="science-positive">
+      <ul>
+        <li>"Smartphone use does not have to be rude: making phones a collaborative presence in meetings" – Böhmer et al. 2013</li>
+        <li>"Mobile Phones in the Classroom: Examining the Effects of Texting, Twitter, and Message Content on Student Learning" – Kuznekoff et al. 2015</li>
+        <li>"Office Social: Presentation Interactivity for Nearby Devices" – Chattopadhyay et al. 2016</li>
+      </ul>
       <Notes>
         - can engage audience in presentations <br/>
         - and strengthen understanding in lectures <br/>
@@ -85,18 +94,10 @@ ReactDOM.render( (
       <h1>Explore...</h1>
       <Notes>
         I wanted to explore the potential of mobile devices<br/>
-        Guessed right, already see it in action!
+
       </Notes>
     </Slide>
-
-    <Slide name="ip">
-      <h1><code>192.168.0.108:3000</code></h1>
-    </Slide>
-
-    <Slide name="challenges">
-      <h1>Challenges</h1>
-    </Slide>
-    <Slide name="challenges-reveal">
+    <Slide name="reveal">
       <h1>reveal.js</h1>
       <Notes>
         revealjs is a 4500+ line lib with plugins <br/>
@@ -106,20 +107,141 @@ ReactDOM.render( (
         adjusted to my needs + added my features
       </Notes>
     </Slide>
+    <Slide name="behind-the-scenes">
+      <h1>Behind the Scenes</h1>
+    </Slide>
     <Slide name="technologies">
       <img src="./img/rxjs-logo.png" />
       <img src="./img/react-logo.png" />
       <img src="./img/socketio-logo.gif" />
     </Slide>
+    <Slide name="architecture">
+      <h1>Architecture</h1>
+      <ul>
+        <li><strong>Presenter</strong> – How should slides be rendered?</li>
+        <li><strong>Controls</strong> – How should slides interact?</li>
+      </ul>
+    </Slide>
+    <Slide name="modes">
+      <h1>Mode Definition</h1>
+      <pre><PrismCode className="language-javascript">{
+`// imports...
+
+let modes = {
+  'default': {
+    'controls': [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver],
+    'presenter': Presenter
+  },
+  'speaker': {
+    'controls': [KeyControls, TouchControls, SocketReceiver, SocketSender, MediaAcceptor, MediaReceiver],
+    'presenter': SpeakerPresenter
+  },
+  'projector': {
+    'controls': [SocketReceiver, MediaReceiver],
+    'presenter': Presenter
+  }
+};`
+      }
+      </PrismCode></pre>
+    </Slide>
+    <Slide name="slides">
+      <h1>Slides</h1>
+      <pre><PrismCode className="language-html">{
+`ReactDOM.render( (
+  <UnveilApp modes={modes}>
+    <Slide name="explore">
+      <h1>Explore...</h1>
+      <Notes>
+        wanted to explore the potential of mobile devices
+      </Notes>
+    </Slide>
+    <Slide name="reveal">
+      <h1>reveal.js</h1>
+    </Slide>
+  </UnveilApp>
+) );`
+    }
+    </PrismCode></pre>
+    </Slide>
+    <Slide name="styling">
+      <h1>Styles</h1>
+      <pre><PrismCode className="language-css">{
+        `.slide {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#explore {
+  background-image: url('../img/explore.jpg');
+  color: #fff;
+}
+
+#reveal {
+  background-image: url('../img/reveal-js.png')
+}`
+      }
+      </PrismCode></pre>
+    </Slide>
+    <Slide name="result">
+      <h1>Result</h1>
+      <pre><PrismCode className="language-html">{
+`<section id="unveil">
+  <section data-reactroot="">
+    <div class="controls">
+      <!-- controls -->
+    </div>
+    <section id="explore" class="slide">
+      <div class="slide-content">
+        <h1>Explore...</h1>
+      </div>
+    </section>
+  </section>
+</section>`
+      }
+      </PrismCode></pre>
+    </Slide>
+    <Slide name="controls">
+      <h1>Controls</h1>
+      <pre><PrismCode className="language-javascript">{
+`// imports...
+export default React.createClass({
+  propTypes: {
+    navigator: React.PropTypes.object.isRequired
+  },
+
+  componentDidMount: function () {
+    Observable.fromEvent(socket, 'state:change')
+      .subscribe(this.props.navigator.next);
+  },
+
+  render: function () {
+    return false;
+  }
+});`
+      }
+      </PrismCode></pre>
+    </Slide>
     <Slide name="future">
       <h1>outlook...</h1>
+      <ul>
+        <li>Saving State Changes</li>
+        <li>Polls</li>
+        <li>Mood-Metre</li>
+      </ul>
       <Notes>
         unveil: publish, create converter etc.<br/><br/>
 
         master project: implement more feature<br/>
-        - polls
+        - polls<br/>
         - mood-metre
       </Notes>
+    </Slide>
+    <Slide name="ip">
+      <h1><code>192.168.0.108:3000</code></h1>
+    </Slide>
+    <Slide name="demo">
+      <h1>Demo Time</h1>
     </Slide>
 
   </UnveilApp>
