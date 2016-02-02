@@ -5,9 +5,15 @@ var io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/../client/'));
 
-io.on('connection', function(socket){
-  var onevent = socket.onevent;
+var lastState = [];
+
+io.on('connection', function(socket) {
   console.log('new client');
+  if (lastState) {
+    socket.emit('state:change', lastState);
+  }
+
+  var onevent = socket.onevent;
   socket.onevent = function (packet) {
     var args = packet.data || [];
     onevent.call (this, packet);    // original call
@@ -16,6 +22,10 @@ io.on('connection', function(socket){
   };
 
   socket.on('*', function(event, data) {
+    if (event === 'state:change') {
+      lastState = data;
+    }
+
     console.log('broadcasting', event, data);
     io.emit(event, data);
   });
