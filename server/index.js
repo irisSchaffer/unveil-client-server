@@ -7,10 +7,19 @@ app.use(express.static(__dirname + '/../client/'));
 
 var lastState = [];
 
+Array.prototype.equals = function (other) {
+  const deepEqual = (a, b) => {
+    if(a.length === 0 || b.length === 0) return true;
+    return (a[0] === b[0]) && deepEqual(a.slice(1), b.slice(1));
+  };
+
+  return this.length === other.length && deepEqual(this, other);
+};
+
 io.on('connection', function(socket) {
   console.log('new client');
   if (lastState) {
-    socket.emit('state:change', lastState);
+    socket.emit('state:initial', lastState);
   }
 
   var onevent = socket.onevent;
@@ -23,6 +32,8 @@ io.on('connection', function(socket) {
 
   socket.on('*', function(event, data) {
     if (event === 'state:change') {
+      if (lastState.equals(data)) return;
+
       lastState = data;
     }
 

@@ -4,11 +4,11 @@ import {PrismCode} from "react-prism";
 
 import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presenter } from '../../unveil-fork/src';
 import { SocketReceiver, SocketSender } from '../../unveil-network-sync/src';
-import { MediaSender, MediaReceiver, MediaAcceptor, SpeakerPresenter } from '../../unveil-interactive/src';
+import { MediaSender, MediaReceiver, MediaAcceptor, SpeakerPresenter, InitialStateListener } from '../../unveil-interactive/src';
 
 let modes = {
   default: {
-    controls: [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver],
+    controls: [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver, InitialStateListener],
     presenter: Presenter
   },
   speaker: {
@@ -16,7 +16,7 @@ let modes = {
     presenter: SpeakerPresenter
   },
   projector: {
-    controls: [SocketReceiver, MediaReceiver],
+    controls: [SocketReceiver, MediaReceiver, InitialStateListener],
     presenter: Presenter
   }
 };
@@ -226,6 +226,7 @@ export default React.createClass({
       <h1>outlook...</h1>
       <ul>
         <li>Saving State Changes</li>
+        <li>Allow listeners to move independently</li>
         <li>Polls</li>
         <li>Mood-Metre</li>
       </ul>
@@ -238,10 +239,14 @@ export default React.createClass({
       </Notes>
     </Slide>
     <Slide name="ip">
-      <h1><code>192.168.0.108:3000</code></h1>
+      <h1><code>10.29.0.138:3000</code></h1>
+      <Notes>
+        Tell people to go to this ip :)
+      </Notes>
     </Slide>
     <Slide name="demo">
       <h1>Demo Time</h1>
+      <Notes>Wait until people are connected...</Notes>
     </Slide>
 
   </UnveilApp>
