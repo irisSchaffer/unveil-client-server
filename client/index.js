@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {PrismCode} from "react-prism";
+import { PrismCode } from "react-prism";
 
-import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presenter } from '../../unveil-fork/src';
+import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presenter } from '../../unveil.js/src';
 import { SocketReceiver, SocketSender } from '../../unveil-network-sync/src';
-import { MediaSender, MediaReceiver, MediaAcceptor, SpeakerPresenter, InitialStateListener } from '../../unveil-interactive/src';
+import { MediaSender, MediaReceiver, MediaAcceptor, SpeakerPresenter } from '../../unveil-interactive/src';
 
 let modes = {
   default: {
-    controls: [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver, InitialStateListener],
+    controls : [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver],
     presenter: Presenter
   },
   speaker: {
-    controls: [KeyControls, TouchControls, SocketReceiver, SocketSender, MediaAcceptor, MediaReceiver],
+    controls : [KeyControls, TouchControls, MediaAcceptor, MediaReceiver, SocketSender, SocketReceiver],
     presenter: SpeakerPresenter
   },
   projector: {
-    controls: [SocketReceiver, MediaReceiver, InitialStateListener],
+    controls : [SocketReceiver, MediaReceiver],
     presenter: Presenter
   }
 };
