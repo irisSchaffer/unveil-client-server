@@ -3,10 +3,11 @@
   "private": true,
   "author": "Iris Schaffer <irisSchaffer@gmx.net>",
   "dependencies": {
-    "unveil": "^0.1.13",
-    "unveil-network-sync": "^0.0.3",
+    "babel-preset-stage-0": "^6.5.0",
+    "react-addons-pure-render-mixin": "^0.14.7",
     "react-prism": "^3.1.1",
-    "react-addons-pure-render-mixin": "^0.14.7"
+    "unveil": "^0.1.13",
+    "unveil-network-sync": "^0.0.3"
   },
   "devDependencies": {
     "react-addons-test-utils": "~0.15.0-alpha.1",
