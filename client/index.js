@@ -4,19 +4,19 @@ import { PrismCode } from "react-prism";
 
 import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presenter } from '../../unveil.js/src';
 import { SocketReceiver, SocketSender } from '../../unveil-network-sync/src';
-import { MediaSender, MediaReceiver, MediaAcceptor, SpeakerPresenter } from '../../unveil-interactive/src';
+import { MediaSender, MediaReceiver, MediaAcceptor, SpeakerPresenter, Voting, Question, Answer, VotingController } from '../../unveil-interactive/src';
 
 let modes = {
   default: {
-    controls : [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver],
+    controls : [KeyControls, TouchControls, UIControls, SocketReceiver, MediaSender, MediaReceiver, VotingController],
     presenter: Presenter
   },
   speaker: {
-    controls : [KeyControls, TouchControls, MediaAcceptor, MediaReceiver, SocketSender, SocketReceiver],
+    controls : [KeyControls, TouchControls, MediaAcceptor, MediaReceiver, SocketSender, SocketReceiver, VotingController],
     presenter: SpeakerPresenter
   },
   projector: {
-    controls : [SocketReceiver, MediaReceiver],
+    controls : [SocketReceiver, MediaReceiver, VotingController],
     presenter: Presenter
   }
 };
@@ -24,6 +24,14 @@ let modes = {
 ReactDOM.render( (
 <section>
   <UnveilApp modes={modes}>
+    <Slide name="voting">
+      <Voting name="like-slides">
+        <Question>How do you like these slides?</Question>
+        <Answer value="muchito">A whole lot!</Answer>
+        <Answer value="a-bito">So lala...</Answer>
+        <Answer value="hatito">Booo!</Answer>
+      </Voting>
+    </Slide>
     <Slide name="start">
       <h1>Unveil</h1>
       <h2>a meta presentation</h2>
