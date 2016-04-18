@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { PrismCode } from "react-prism";
 
 import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presenter } from '../../unveil.js/src';
-import { SocketReceiver, SocketSender } from '../../unveil-network-sync/src';
+import { NavigationReceiver, NavigationSender } from '../../unveil-network-sync/src';
 import {
   SpeakerPresenter,
   Redirect, Link,
@@ -19,7 +19,7 @@ let modes = {
   default: {
     controls : [
       KeyControls, TouchControls, UIControls,
-      SocketReceiver,
+      NavigationReceiver,
       MediaSender, MediaReceiver,
       VotingNavigatableSetter, VotingReceiver
     ],
@@ -29,14 +29,14 @@ let modes = {
     controls : [
       KeyControls, TouchControls,
       MediaAcceptor, MediaReceiver,
-      SocketSender, SocketReceiver,
+      NavigationSender, NavigationReceiver,
       VotingController, VotingCreator, VotingReceiver
     ],
     presenter: SpeakerPresenter
   },
   projector: {
     controls : [
-      SocketReceiver,
+      NavigationReceiver,
       MediaReceiver,
       VotingNavigatableSetter, VotingReceiver
     ],
