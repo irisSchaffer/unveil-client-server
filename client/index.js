@@ -12,6 +12,9 @@ import {
   MediaSender, MediaReceiver, MediaAcceptor
 } from '../../unveil-interactive/src';
 
+import createSocket from '../../unveil-network-sync/src/helpers/createSocket'
+createSocket('http://192.168.1.200:9000')
+
 let modes = {
   default: {
     controls : [
