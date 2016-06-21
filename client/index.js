@@ -6,7 +6,7 @@ import { UnveilApp, Slide, Notes, KeyControls, UIControls, TouchControls, Presen
 import { NavigationReceiver, NavigationSender } from '../../unveil-network-sync/src';
 import {
   SpeakerPresenter,
-  Redirect, Link,
+  Link,
   Voting, Question, Answer,
   VotingController, VotingReceiver, VotingCreator, VotingNavigatableSetter,
   MediaSender, MediaReceiver, MediaAcceptor
