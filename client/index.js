@@ -9,7 +9,7 @@ import {
   Link,
   Voting, Question, Answer,
   VotingController, VotingReceiver, VotingCreator, VotingNavigatableSetter,
-  MediaSender, MediaReceiver, MediaAcceptor
+  MediaSender, LinkSender, MediaReceiver, MediaAcceptor
 } from '../../unveil-interactive/src';
 
 import createSocket from '../../unveil-network-sync/src/helpers/createSocket'
@@ -20,7 +20,7 @@ let modes = {
     controls : [
       KeyControls, TouchControls, UIControls,
       NavigationReceiver,
-      MediaSender, MediaReceiver,
+      MediaSender, LinkSender, MediaReceiver,
       VotingNavigatableSetter, VotingReceiver
     ],
     presenter: Presenter
