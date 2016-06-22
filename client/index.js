@@ -45,7 +45,6 @@ let modes = {
 };
 
 ReactDOM.render( (
-<section>
   <UnveilApp modes={modes}>
     <Slide name="start">
       <h1>Unveil</h1>
@@ -314,5 +313,4 @@ export default React.createClass({
     </Slide>
 
   </UnveilApp>
-</section>
 ), document.getElementById('unveil'));
